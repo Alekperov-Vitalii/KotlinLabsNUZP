@@ -7,20 +7,20 @@ fun seed(): String = "Alekperov-Vitalii"
 
 fun labNumber(): Int = BuildConfig.LAB_NUMBER
 
-fun iCalculate(): Double {
-    val x0 = 111
-    val x1 = -76
-    val x2 = 20
-    val x0Cube = x0.toDouble() * x0 * x0
-    val x1Cube = x1.toDouble() * x1 * x1
-    val x2Cube = x2.toDouble() * x2 * x2
-    return ln(x0Cube + x1Cube + x2Cube)
+fun iCalculate(
+    x0: Int = 111,
+    x1: Int = -76,
+    x2: Int = 20
+): Double {
+    val sumOfCubes = x0.toDouble() * x0 * x0 + x1 * x1 * x1 + x2 * x2 * x2
+    return ln(sumOfCubes)
 }
 
-fun dCalculate(): Double {
-    val x0 = 85.8
-    val x1 = -33.0
-    val x2 = 30.69
+fun dCalculate(
+    x0: Double = 85.8,
+    x1: Double = -33.0,
+    x2: Double = 30.69
+): Double {
     return tanh(x0 * x1 * x2)
 }
 
