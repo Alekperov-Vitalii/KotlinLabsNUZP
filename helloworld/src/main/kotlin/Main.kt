@@ -12,8 +12,10 @@ fun iCalculate(
     x1: Int = -76,
     x2: Int = 20
 ): Double {
-    val sumOfCubes = x0.toDouble() * x0 * x0 + x1 * x1 * x1 + x2 * x2 * x2
-    return ln(sumOfCubes)
+    val x0d = x0.toDouble()
+    val x1d = x1.toDouble()
+    val x2d = x2.toDouble()
+    return ln(x0d * x0d * x0d + x1d * x1d * x1d + x2d * x2d * x2d)
 }
 
 fun dCalculate(
@@ -25,23 +27,23 @@ fun dCalculate(
 }
 
 fun strCalculate(x0: String, x1: String): Int {
-    require(x0.length == x1.length) { "Рядки повинні мати однакову довжину" }
-    require(x0.isNotEmpty()) { "Рядки не повинні бути порожніми" }
+    require(x0.length == x1.length && x0.isNotEmpty()) { "Рядки повинні мати однакову довжину" }
 
     var penalty = 0
-    val halfIndex = (x0.length + 1) / 2
+    val halfIndex = x0.length / 2
 
-    var i = 0
-    while (i < x0.length) {
-        if (x0[i] != x1[i]) {
-            penalty += if (i < halfIndex) 1 else 2
+    for (i in x0.indices) {
+        if (x0[i] == 'A' || x0[i] == 'C') {
+            if (x0[i] != x1[i]) {
+                penalty += if (i < halfIndex) 1 else 2
+            }
         }
-        i += 2
     }
     return penalty
 }
 
 fun main(args: Array<String>) {
     println("Лабораторна робота №${labNumber()} користувача ${seed()}")
+
     startTestUi(seed(), labNumber())
 }
